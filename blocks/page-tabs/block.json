@@ -1,0 +1,75 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "movant/page-tabs",
+	"title": "Page Tabs",
+	"version": "0.1.0",
+	"category": "movant-content-modules",
+	"description": "",
+	"example": {
+		"viewportWidth": 1920
+	},
+	"styles": [
+		{
+			"name": "default",
+			"label": "Default",
+			"isDefault": true
+		}
+	],
+	"attributes": {
+		"selectedPages": {
+			"type": "array",
+			"items": {
+				"type": "number"
+			},
+			"default": []
+		},
+		"align": {
+			"type": "string",
+			"default": "full"
+		},
+		"layout": {
+			"type": "object",
+			"default": {
+				"type": "constrained"
+			}
+		}
+	},
+	"usesContext": [
+		"postId"
+	],
+	"supports": {
+		"html": false,
+		"anchor": true,
+		"align": [
+			"full"
+		],
+		"layout": {
+			"default": {
+				"type": "constrained"
+			},
+			"allowEditing": false
+		},
+		"className": true,
+		"interactivity": {
+			"interactive": true,
+			"clientNavigation": true
+		}
+	},
+	"textdomain": "movant",
+	"editorScript": [
+		"file:./index.js"
+	],
+	"viewScriptModule": [
+		"file:./view.js"
+	],
+	"editorStyle": [
+		"file:./index.css"
+	],
+	"render": "file:./render.php",
+	"script": "file:./script.js",
+	"style": [
+		"movant-swiper",
+		"file:./style-index.css"
+	]
+}

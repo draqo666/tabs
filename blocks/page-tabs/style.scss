@@ -1,0 +1,235 @@
+@import "@/scss/mixins";
+
+.wp-block-movant-page-tabs {
+	padding-top: 0 !important;
+
+	@include to($breakpoint-md) {
+
+		.swiper.swiper {
+			position: relative;
+			padding-left: var(--wp--preset--spacing--xs) !important;
+			padding-right: var(--wp--preset--spacing--xs) !important;
+			max-width: calc(100vw - 2 * var(--wp--preset--spacing--xs)) !important;
+			margin-inline: auto !important;
+		}
+	}
+
+	&__wrapper {
+
+		.swiper-button-prev,
+		.swiper-button-next {
+			color: var(--wp--preset--color--neutral-dark);
+			height: 100%;
+			width: 4.875rem;
+			background: linear-gradient(89.88deg, rgba(255, 255, 255, 0) 0.09%, rgba(255, 255, 255, 0.557538) 34.02%, #fff 62.4%);
+			outline-color: transparent !important;
+			bottom: 0;
+			top: initial;
+
+			&::after {
+				background-image: url(../../images/icons/chevron-swiper.svg);
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: contain;
+				font-size: 0;
+				width: 10px;
+				height: 17px;
+				position: absolute;
+				top: 50%;
+			}
+
+			@include from($breakpoint-md) {
+				display: none;
+			}
+		}
+
+		.swiper-button-prev {
+			left: 0;
+			transform: rotate(180deg);
+
+			&::after {
+				right: var(--wp--preset--spacing--sm);
+				transform: translateY(-50%);
+			}
+		}
+
+		.swiper-button-next {
+			right: 0;
+
+			&::after {
+				right: var(--wp--preset--spacing--sm);
+				transform: translateY(-50%) rotate(0deg) !important;
+			}
+		}
+
+		.swiper-button-disabled {
+			display: none;
+		}
+
+	}
+
+	&__tabs {
+		display: flex;
+		justify-content: flex-start;
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	&__tab {
+		position: relative;
+		cursor: pointer;
+		border: none;
+		transition: color 0.3s ease;
+		border-radius: 10px 10px 0 0;
+
+		&.swiper-slide {
+			width: auto;
+			height: auto;
+
+			@include from($breakpoint-md) {
+				flex-shrink: initial;
+			}
+		}
+
+		@include from($breakpoint-md) {
+			margin: 0 29px;
+			border-radius: 0;
+
+			&::before,
+			&::after {
+				content: "";
+				mask: url(../../images/masks/button-side-curve.svg) no-repeat center;
+				mask-size: contain;
+				height: 100%;
+				display: block;
+				aspect-ratio: 721/760;
+				position: absolute;
+				bottom: 0;
+			}
+
+			&::before {
+				transform: translateX(-94%);
+				left: 0;
+			}
+
+			&::after {
+				transform: scaleX(-1) translateX(-94%);
+				right: 0;
+			}
+		}
+
+		button {
+			background: transparent;
+			border: none;
+			padding: var(--wp--preset--spacing--2-xs) var(--wp--preset--spacing--sm);
+			cursor: pointer;
+			font-size: 1.125rem;
+			outline: transparent;
+			color: var(--wp--preset--color--primary-second);
+			font-family: var(--wp--preset--font-family--body);
+			position: relative;
+
+			@include from($breakpoint-md) {
+				padding: 4px 2px;
+				font-size: var(--wp--preset--font-size--text-md);
+			}
+
+			@include to($breakpoint-md) {
+
+				&::after {
+					content: "";
+					display: block;
+					width: 1px;
+					height: 20px;
+					position: absolute;
+					left: 0;
+					top: 50%;
+					transform: translateY(calc(-50% + 2px));
+					background-color: var(--wp--preset--color--gray-first);
+				}
+			}
+		}
+
+
+		@include to($breakpoint-md) {
+
+			&:first-child {
+
+				button {
+
+					&::after {
+						display: none;
+					}
+				}
+			}
+		}
+
+		&--active {
+			background-color: var(--wp-preset-active-button-color, var(--wp--preset--color--secondary-second));
+
+			button {
+				font-weight: 700;
+			}
+
+			@include to($breakpoint-md) {
+
+				button::after {
+					display: none;
+				}
+
+				+ .wp-block-movant-page-tabs__tab {
+
+					button::after {
+						display: none;
+					}
+				}
+			}
+
+			&::before,
+			&::after {
+				background-color: var(--wp-preset-active-button-color, var(--wp--preset--color--secondary-second));
+			}
+		}
+
+		&.is-style-inverted {
+
+			button {
+				color: var(--wp--preset--color--neutral-light);
+			}
+		}
+	}
+
+	&__content {
+		display: none;
+
+		&--active {
+			display: block;
+		}
+	}
+
+	&__tabs-content {
+		display: block;
+	}
+}
+
+.is-style-secondary + .wp-block-movant-page-tabs {
+
+	.wp-block-movant-page-tabs__wrapper {
+		background-color: var(--wp--preset--color--secondary-first);
+	}
+}
+
+.is-style-primary + .wp-block-movant-page-tabs {
+
+	.wp-block-movant-page-tabs__wrapper {
+		background-color: var(--wp--preset--color--primary-first);
+	}
+}
+
+.is-style-neutral + .wp-block-movant-page-tabs {
+
+	.wp-block-movant-page-tabs__wrapper {
+		background-color: var(--wp--preset--color--secondary-second);
+	}
+}
